@@ -5,7 +5,16 @@ from .models import Medical, Department, MedicalAvailability, MedicalNote
 class MedicalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medical
-        fields = ("id", "first_name", "last_name", "qualification", "contact_number", "email", "address", "biography")
+        fields = (
+            "id",
+            "first_name",
+            "last_name",
+            "qualification",
+            "contact_number",
+            "email",
+            "address",
+            "biography",
+        )
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
