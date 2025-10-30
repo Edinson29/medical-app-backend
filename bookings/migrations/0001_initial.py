@@ -5,34 +5,70 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('medicals', '0001_initial'),
-        ('patients', '0001_initial'),
+        ("medicals", "0001_initial"),
+        ("patients", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Appointment',
+            name="Appointment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('appointment_date', models.DateField()),
-                ('appointment_time', models.TimeField()),
-                ('notes', models.TextField()),
-                ('status', models.CharField(max_length=10)),
-                ('medical', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='appointments', to='medicals.medical')),
-                ('patient', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='appointments', to='patients.patient')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("appointment_date", models.DateField()),
+                ("appointment_time", models.TimeField()),
+                ("notes", models.TextField()),
+                ("status", models.CharField(max_length=10)),
+                (
+                    "medical",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="appointments",
+                        to="medicals.medical",
+                    ),
+                ),
+                (
+                    "patient",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="appointments",
+                        to="patients.patient",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='MedicalNote',
+            name="MedicalNote",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('note', models.TextField()),
-                ('date', models.DateField()),
-                ('appointment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='medical_notes', to='bookings.appointment')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("note", models.TextField()),
+                ("date", models.DateField()),
+                (
+                    "appointment",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="medical_notes",
+                        to="bookings.appointment",
+                    ),
+                ),
             ],
         ),
     ]
