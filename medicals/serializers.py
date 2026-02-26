@@ -14,6 +14,7 @@ class MedicalSerializer(serializers.ModelSerializer):
             "email",
             "address",
             "biography",
+            "is_on_vacation",
         )
 
 
