@@ -2,8 +2,8 @@ from django.db.models import QuerySet
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .serializers import MedicalSerializer
-from .models import Medical
+from .serializers import MedicalSerializer, DepartmentSerializer, MedicalAvailabilitySerializer, MedicalNoteSerializer
+from .models import Medical, Department, MedicalAvailability, MedicalNote
 
 class MedicalViewSet(viewsets.ModelViewSet):
     serializer_class = MedicalSerializer
@@ -15,3 +15,18 @@ class MedicalViewSet(viewsets.ModelViewSet):
         medical.is_on_vacation = not medical.is_on_vacation
         medical.save()
         return Response(f"Medical updated {medical.is_on_vacation}")
+
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    serializer_class = DepartmentSerializer
+    queryset = Department.objects.all()
+
+
+class MedicalAvailabilityViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicalAvailabilitySerializer
+    queryset = MedicalAvailability.objects.all()
+
+
+class MedicalNoteViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicalNoteSerializer
+    queryset = MedicalNote.objects.all()
