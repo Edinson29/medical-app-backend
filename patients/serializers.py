@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Patient, Insurance, MedicalRecord
+from datetime import datetime
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -16,6 +17,10 @@ class PatientSerializer(serializers.ModelSerializer):
             "medical_history",
         )
 
+    def validate_date_of_birth(self, value):
+        if value > datetime.now().date():
+            raise serializers.ValidationError("La fecha de nacimiento debe ser en el pasado.")
+        return value
 
 class InsuranceSerializer(serializers.ModelSerializer):
     class Meta:

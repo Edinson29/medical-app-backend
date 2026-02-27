@@ -17,6 +17,17 @@ class MedicalSerializer(serializers.ModelSerializer):
             "is_on_vacation",
         )
 
+    def validate_email(self, value):
+        if not value.endswith("@develop.com"):
+            raise serializers.ValidationError("El correo debe terminar con @develop.com")
+        return value
+    
+    def validate(self, data):
+        if data["is_on_vacation"] and len(data["contact_number"]) < 10:
+            raise serializers.ValidationError("El número de contacto debe tener al menos 10 dígitos si el médico está de vacaciones.")
+        return data
+
+
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
