@@ -119,3 +119,13 @@ medical-app-backend/
 ├── manage.py
 └── requirements.txt
 ```
+
+
+# SUPER USER FOR ADMIN
+- username: admin
+- email: admin@admin.com
+- password: Hola12345.
+
+# Patient user
+- username: patient
+- password: Hola12345.
