@@ -8,6 +8,7 @@ from .serializers import PatientSerializer, InsuranceSerializer, MedicalRecordSe
 class PatientViewSet(viewsets.ModelViewSet):
     serializer_class = PatientSerializer
     queryset = Patient.objects.all()
+    throttle_classes = [] # Elimina la limitación de tasa para este ViewSet
 
     @action(detail=True, methods=['get'], url_path='medical-history')
     def get_medical_history(self, request, pk=None):
